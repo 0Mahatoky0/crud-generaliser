@@ -17,4 +17,9 @@ public class Ordi {
     public void setMarque(String marque) {
         this.marque = marque;
     }
+
+    @Override
+    public String toString() {
+        return this.id  + "  " + this.marque;
+    }
 }

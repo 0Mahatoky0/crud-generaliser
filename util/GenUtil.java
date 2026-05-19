@@ -5,12 +5,26 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class GenUtil {
     public static void putId(Object object , int id) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, SecurityException, NoSuchMethodException {
         Method setterId = getSetter("id", object);
         setterId.invoke(object, id);
     }
+
+    public static void setAtributs(Object obj,Map<String,Object> colunmsValues) throws NoSuchFieldException, SecurityException, NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        for(Map.Entry<String,Object> entry : colunmsValues.entrySet()) {
+            Method setter = getSetter(entry.getKey(), obj);
+            setter.invoke(obj, entry.getValue());
+        }
+    }
+
+    public static  Class<?>  getAttributsType(Class<?> class1,String fieldName) throws NoSuchFieldException, SecurityException {
+        Field field = class1.getDeclaredField(fieldName);
+        return field.getType();
+    }
+
     public static String[] getAttributs(Class<?> class1) {
         ArrayList<String> fieldName = new ArrayList<>();
         Field[] fields = class1.getDeclaredFields();
