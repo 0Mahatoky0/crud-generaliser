@@ -15,13 +15,13 @@ import util.ObjectMaping;
 import util.exeption.IncastableClassExeption;
 import java.awt.event.ActionListener;
 
-public class CrudPanel extends JPanel {
+public class FormCreatePannel extends JPanel {
 
     private HashMap<String, JTextArea> columnsInputs;
     private Class<?> class1;
     private JButton submitBtn;
 
-    public CrudPanel(Class<?> class1) {
+    public FormCreatePannel(Class<?> class1) {
         this.setSize(500, 500);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.class1 = class1;

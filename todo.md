@@ -15,5 +15,11 @@
 - cree des input en fonction des  atributs
 - cree l objet lors du submit en fonction des input cree
 # list
+- cree fontion
+- recuperer les columns
+- cree le grid layout
+- ajouter les elements au grid layout
+    - transformner un objet ligne de table
+    - transofmmenr un 
 # delete
 # update

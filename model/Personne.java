@@ -10,6 +10,19 @@ public class Personne {
     private double taille;
     private Date dateNaissance;
 
+    
+
+    public Personne() {
+    }
+
+    public Personne(String nom, String prenom, int age, double taille, Date dateNaissance) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.age = age;
+        this.taille = taille;
+        this.dateNaissance = dateNaissance;
+    }
+
     public String getNom() {
         return nom;
     }
