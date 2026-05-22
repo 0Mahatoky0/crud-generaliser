@@ -1,12 +1,13 @@
 package vue;
-import java.awt.List;
+import java.awt.Dimension;
+
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Date;
 import java.util.ArrayList;
 
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
-import model.Ordi;
 import model.Personne;
 
 public class MainFrame extends JFrame {
@@ -14,6 +15,7 @@ public class MainFrame extends JFrame {
     public MainFrame() {
         this.setSize(200, 200);
         this.setLocationRelativeTo(null);
+        this.getContentPane().setLayout(new BoxLayout(this.getContentPane(),BoxLayout.Y_AXIS));
 
         FormCreatePannel formCreate = new FormCreatePannel(Personne.class);
         this.add(formCreate);
@@ -25,7 +27,7 @@ public class MainFrame extends JFrame {
         personnes.add(p1);
         personnes.add(p2);
 
-        ListPannel<Personne> listPannel = new ListPannel<>(Personne.class);
+        ListPannel<Personne> listPannel = new ListPannel<>(Personne.class,new Dimension(700, 700));
         try {
             listPannel.showList(personnes);
         } catch (NoSuchFieldException | SecurityException | NoSuchMethodException | IllegalAccessException

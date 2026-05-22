@@ -1,11 +1,13 @@
 package vue;
 
-
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,23 +18,27 @@ public class ListPannel<T> extends JPanel {
 
     private ObjectMaping objectMaping;
 
-    public ListPannel(Class<T> class1) {
-        this.setSize(500,500);
+    public ListPannel(Class<T> class1,Dimension size) {
+        this.setPreferredSize(size);
         this.objectMaping = ObjectMaping.get(class1);
+        this.setLayout(new BorderLayout());
     }
 
-    public void showList(List<T> elements) throws NoSuchFieldException, SecurityException, NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+    public void showList(List<T> elements) throws NoSuchFieldException, SecurityException, NoSuchMethodException,
+            IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         this.removeAll();
         String[] headers = objectMaping.getcolumns();
         Object[][] rows = listToTabObject(elements);
-        
-        DefaultTableModel model = new DefaultTableModel(rows,headers);
+
+        DefaultTableModel model = new DefaultTableModel(rows, headers);
         JTable table = new JTable(model);
-        this.add(table);
+        JScrollPane scrollPane = new JScrollPane(table);
+        this.add(scrollPane,BorderLayout.CENTER);
     }
 
-    public  Object[][] listToTabObject(List<T> elements) throws NoSuchFieldException, SecurityException, NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-        //recuperer les informantion de colone
+    public Object[][] listToTabObject(List<T> elements) throws NoSuchFieldException, SecurityException,
+            NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        // recuperer les informantion de colone
         ArrayList<Object[]> rowsLists = new ArrayList<>();
         for (Object el : elements) {
             Object[] fieldsValues = GenUtil.getFieldsValues(el);
